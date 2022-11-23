@@ -1,46 +1,49 @@
-// package it.synclab.pmsensor.service;
+package it.synclab.pmsensor.service;
 
-// import org.apache.logging.log4j.LogManager;
-// import org.apache.logging.log4j.Logger;
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.beans.factory.annotation.Value;
-// import org.springframework.stereotype.Service;
+import java.util.List;
 
-// import it.synclab.pmsensor.model.AmbientInfos;
-// import it.synclab.pmsensor.model.Temperature;
-// import it.synclab.pmsensor.repository.TemperatureRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-// @Service
-// public class TemperatureService {
-//     @Value("${sensor.ambienting.url}")
-//     private String sensorDataUrl;
+import it.synclab.pmsensor.model.Temperature;
+import it.synclab.pmsensor.repository.TemperatureRepository;
 
-//     @Autowired
-//     private TemperatureRepository tempRep;
+@Service
+public class TemperatureService {
 
-//     private static final Logger logger = LogManager.getLogger(TemperatureService.class);
+    @Autowired
+    private TemperatureRepository tempRep;
 
-//     public Temperature buildTemperatureFromAmbientInfos(AmbientInfos ai) {
-//         Temperature temp = new Temperature();
-//         temp.setAddress("Padova Galleria Spagna");
-//         temp.setLatitude(String.valueOf(45.388653));
-//         temp.setLongitude(String.valueOf(11.928344));
-//         temp.setTimestamp(ai.getDate());
-//         temp.setValue(String.valueOf(ai.getTemperature()));
-//         temp.setAmbient_info(ai);
-//         return temp;
-//     }
+    public List<Temperature> getAllTemperatures() {
+        List<Temperature> temperatures = tempRep.getAllTemperature();
+        return temperatures;
+    }
 
-//     public void saveTemperatureData(Temperature temp) {
-//         logger.debug("TemperatureService START saveTemperatureData");
-//         try {
-//             tempRep.save(temp);
-//         } catch (Exception e) {
-//             logger.error("TemperatureService - Error", e);
-//         }
-//         logger.debug("TemperatureService END saveTemperatureData");
-//     }
+    public Temperature getTemperatureByAmbInfId(Long ambientInfo) {
+        Temperature t = tempRep.getTemperatureByAmbInfId(ambientInfo);
+        return t;
+    }
+
+    public String getValueById(Long id) {
+        return tempRep.getValueById(id);
+    }
+
+    public void updateTemperatureValueById(String value, Long id) {
+        tempRep.updateTemperatureValueById(value, id);
+    }
+
+    public void updateTempValueByAIId(String value, Long ambientInfo) {
+        tempRep.updateTempValueByAIId(value, ambientInfo);
+    }
+
+    public void deleteTemperatureByAIId(Long ambientInfo) {
+        tempRep.deleteTemperatureByAIId(ambientInfo);
+    }
+
+    public void deleteTemperatureById(Long id) {
+        tempRep.deleteTemperatureById(id);
+    }
 
 
 
-// }
+}

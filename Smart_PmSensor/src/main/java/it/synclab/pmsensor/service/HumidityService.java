@@ -1,45 +1,52 @@
-// package it.synclab.pmsensor.service;
+package it.synclab.pmsensor.service;
 
-// import org.apache.logging.log4j.LogManager;
-// import org.apache.logging.log4j.Logger;
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.beans.factory.annotation.Value;
-// import org.springframework.stereotype.Service;
+import java.util.List;
 
-// import it.synclab.pmsensor.model.AmbientInfos;
-// import it.synclab.pmsensor.model.Humidity;
-// import it.synclab.pmsensor.repository.HumidityRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-// @Service
-// public class HumidityService {
+import it.synclab.pmsensor.model.Humidity;
+import it.synclab.pmsensor.repository.HumidityRepository;
+import lombok.extern.slf4j.Slf4j;
 
-//     @Value("${sensor.ambienting.url}")
-//     private String sensorDataUrl;
+@Slf4j
+@Service
+public class HumidityService {
 
-//     @Autowired
-//     private HumidityRepository humRep;
+    @Autowired
+    private HumidityRepository humRep;
 
-//     private static final Logger logger = LogManager.getLogger(HumidityService.class);
 
-//     public Humidity buildHumidityFromAmbientInfos(AmbientInfos ai) {
-//         Humidity hum = new Humidity();
-//         hum.setAddress("Padova Galleria Spagna");
-//         hum.setLatitude(String.valueOf(45.388653));
-//         hum.setLongitude(String.valueOf(11.928344));
-//         hum.setTimestamp(ai.getDate());
-//         hum.setValue(String.valueOf(ai.getUmidity()));
-//         hum.setAmbient_info(ai);
-//         return hum;
-//     }
+    public List<Humidity> getAllHumidities() {
+        log.debug("HumidityService START getAllHumidities");
+        List<Humidity> humidities = humRep.getAllHumidity();
+        log.debug("HumidityService END getAllHumidities");
+        return humidities;
+    }
 
-//     public void saveHumidityData(Humidity humidity) {
-//         logger.debug("HumidityService START saveHumidityData");
-//         try {
-//             humRep.save(humidity);
-//         } catch (Exception e) {
-//             logger.error("HumidityService - Error", e);
-//         }
-//         logger.debug("HumidityService END saveHumidityData");
-//     }
+    public Humidity getHumidityByAmbInfId(Long ambientInfo){
+        Humidity h=humRep.getHumidityByAmbInfId(ambientInfo);
+        return h;
+    }
 
-// }
+    public String getValueById(Long id) {
+        return humRep.getValueById(id);
+    }
+
+    public void updateHumidityValueById(String value, Long id){
+        humRep.updateHumidityValueById(value, id);
+    }
+
+    public void updateHumValueByAIId(String value, Long ambientInfo){
+        humRep.updateHumValueByAIId(value, ambientInfo);
+    }
+
+    public void deleteHumidityByAIId(Long ambientInfo){
+        humRep.deleteHumidityByAIId(ambientInfo);
+    }
+
+    public void deleteHumidityById(Long id){
+        humRep.deleteHumidityById(id);
+    }
+
+}
