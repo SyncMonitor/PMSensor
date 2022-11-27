@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import it.synclab.pmsensor.model.ParticularMatter10;
 import it.synclab.pmsensor.repository.PM10Repository;
 
+/**
+ * Service for Pm10
+ */
 @Service
 public class PM10Service {
 

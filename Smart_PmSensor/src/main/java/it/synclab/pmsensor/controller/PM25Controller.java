@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import it.synclab.pmsensor.model.ParticularMatter25;
 import it.synclab.pmsensor.service.PM25Service;
 
+/**
+ * Controller for Pm25
+ */
 @RestController
 @RequestMapping("/pm25")
 public class PM25Controller {

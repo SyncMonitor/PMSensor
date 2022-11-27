@@ -10,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import it.synclab.pmsensor.model.Temperature;
 
+/**
+ * Repository for Temperature
+ */
 @Repository
 public interface TemperatureRepository extends JpaRepository<Temperature, Long> {
 

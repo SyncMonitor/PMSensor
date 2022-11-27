@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import it.synclab.pmsensor.model.Humidity;
 import it.synclab.pmsensor.service.HumidityService;
 
+/**
+ * Controller for Humidity
+ */
 @RestController
 @RequestMapping("/humidities")
 public class HumidityController {

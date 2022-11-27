@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import it.synclab.pmsensor.model.Temperature;
 import it.synclab.pmsensor.service.TemperatureService;
 
+/**
+ * Controller for Temperature
+ */
 @RestController
 @RequestMapping("/temperatures")
 public class TemperatureController {
@@ -26,6 +29,8 @@ public class TemperatureController {
      
      @Autowired
      private TemperatureService tempServ;
+     
+     private static String TCERROR = "TemperatureController -  error";
 
      @GetMapping("/all")
      @ResponseBody
@@ -52,7 +57,7 @@ public class TemperatureController {
          try {
              t = tempServ.getTemperatureByAmbInfId(ambientInfo);
          } catch (Exception e) {
-             logger.error("TemperatureController -  error", e);
+             logger.error(TCERROR, e);
              return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
          }
          logger.info("TemperatureController - END getTemperatureByAmbInfId");
@@ -68,7 +73,7 @@ public class TemperatureController {
          try {
              value = tempServ.getValueById(id);
          } catch (Exception e) {
-             logger.error("TemperatureController -  error", e);
+             logger.error(TCERROR, e);
              return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
          }
          logger.info("TemperatureController - END getTemperatureValueById");
@@ -83,7 +88,7 @@ public class TemperatureController {
          try {
              tempServ.updateTemperatureValueById(value, id);
          } catch (Exception e) {
-             logger.error("TemperatureController -  error", e);
+             logger.error(TCERROR, e);
              return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
          }
          logger.info("TemperatureController - END updateTemperatureValueById");
@@ -98,7 +103,7 @@ public class TemperatureController {
          try {
              tempServ.updateTempValueByAIId(value, ambientInfo);
          } catch (Exception e) {
-             logger.error("TemperatureController -  error", e);
+             logger.error(TCERROR, e);
              return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
          }
          logger.info("TemperatureController - END updateTempValueByAIId");
@@ -113,7 +118,7 @@ public class TemperatureController {
          try {
              tempServ.deleteTemperatureByAIId(ambientInfo);
          } catch (Exception e) {
-             logger.error("TemperatureController -  error", e);
+             logger.error(TCERROR, e);
              return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
          }
          logger.info("TemperatureController - END deleteTemperatureByAIId");
@@ -123,15 +128,15 @@ public class TemperatureController {
      @DeleteMapping("/delete/{id}")
      @ResponseBody
      public ResponseEntity<Object> deleteTemperatureById(@PathVariable Long id) {
-         logger.info("HumidityController - START deleteTemperatureById");
+         logger.info("TemperatureController - START deleteTemperatureById");
          // Security user check
          try {
              tempServ.deleteTemperatureById(id);
          } catch (Exception e) {
-             logger.error("HumidityController -  error", e);
+             logger.error(TCERROR, e);
              return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
          }
-         logger.info("HumidityController - END deleteTemperatureById");
+         logger.info("TemperatureController - END deleteTemperatureById");
          return ResponseEntity.status(HttpStatus.OK).build();
      }
 

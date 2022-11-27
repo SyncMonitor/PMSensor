@@ -17,6 +17,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * ParticularMatter10 class
+ */
 @Entity
 @Data
 @AllArgsConstructor
@@ -36,11 +39,6 @@ public class ParticularMatter10 {
     @Column(name = "value")
     private Double value;
 
-    // @Column(name = "fk_sensor_id")
-    // private Long fkSensorId;
-
-    // @OneToOne(cascade = CascadeType.ALL)
-    // @JoinColumn(name = "fk_ai", referencedColumnName = "id")
     @JsonIgnore
     @OneToOne(mappedBy = "pMatter10")
     private AmbientInfos ambientInfo;

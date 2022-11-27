@@ -3,6 +3,8 @@ package it.synclab.pmsensor.controller;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,17 +23,24 @@ import it.synclab.pmsensor.service.AmbientInfosService;
 import it.synclab.pmsensor.service.StartUpServices;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Controller for AmbientInfos
+ */
 @Slf4j
 @RestController
 @RequestMapping("/ambient-infos")
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class AmbientInfosController {    
 
+	 private static final Logger log = LogManager.getLogger(AmbientInfosController.class);
+	
     @Autowired
     AmbientInfosService ambientIService;
 
     @Autowired
     StartUpServices sup;
+    
+    private static String AICERROR = "AmbientInfosController -  error";
 
     @GetMapping("/all")
     @ResponseBody
@@ -73,10 +82,10 @@ public class AmbientInfosController {
         try {
             a = ambientIService.getAmbientInfosById(id);
         } catch (NullPointerException e) {
-            log.error("AmbientInfosController -  error", e);
+            log.error(AICERROR, e);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } catch (Exception e) {
-            log.error("AmbientInfosController -  error", e);
+            log.error(AICERROR, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
         log.info("AmbientInfosController - END getAmbientInfosData");
@@ -92,10 +101,10 @@ public class AmbientInfosController {
         try {
             date = ambientIService.getDateById(id);
         } catch (NullPointerException e) {
-            log.error("AmbientInfosController -  error", e);
+            log.error(AICERROR, e);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } catch (Exception e) {
-            log.error("AmbientInfosController -  error", e);
+            log.error(AICERROR, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
         log.info("AmbientInfosController - END getAIDateById");
@@ -111,10 +120,10 @@ public class AmbientInfosController {
         try {
             pm2_5 = ambientIService.getPm2_5ById(id);
         } catch (NullPointerException e) {
-            log.error("AmbientInfosController -  error", e);
+            log.error(AICERROR, e);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } catch (Exception e) {
-            log.error("AmbientInfosController -  error", e);
+            log.error(AICERROR, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
         log.info("AmbientInfosController - END getAIPm2_5ById");
@@ -130,10 +139,10 @@ public class AmbientInfosController {
         try {
             pm10 = ambientIService.getPm10ById(id);
         } catch (NullPointerException e) {
-            log.error("AmbientInfosController -  error", e);
+            log.error(AICERROR, e);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } catch (Exception e) {
-            log.error("AmbientInfosController -  error", e);
+            log.error(AICERROR, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
         log.info("AmbientInfosController - END getAIPm10ById");
@@ -149,10 +158,10 @@ public class AmbientInfosController {
         try {
             temperature = ambientIService.getTemperatureById(id);
         } catch (NullPointerException e) {
-            log.error("AmbientInfosController -  error", e);
+            log.error(AICERROR, e);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } catch (Exception e) {
-            log.error("AmbientInfosController -  error", e);
+            log.error(AICERROR, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
         log.info("AmbientInfosController - END getAITemperatureById");
@@ -168,10 +177,10 @@ public class AmbientInfosController {
         try {
             umidity = ambientIService.getUmidityById(id);
         } catch (NullPointerException e) {
-            log.error("AmbientInfosController -  error", e);
+            log.error(AICERROR, e);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } catch (Exception e) {
-            log.error("AmbientInfosController -  error", e);
+            log.error(AICERROR, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
         log.info("AmbientInfosController - END getAIUmidityById");
@@ -199,10 +208,10 @@ public class AmbientInfosController {
         try {
             ambientIService.deleteAmbientInfosById(id);
         } catch (NullPointerException e) {
-            log.error("AmbientInfosController -  error", e);
+            log.error(AICERROR, e);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } catch (Exception e) {
-            log.error("AmbientInfosController -  error", e);
+            log.error(AICERROR, e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
         log.info("AmbientInfosController - END deleteAmbientInfosById");

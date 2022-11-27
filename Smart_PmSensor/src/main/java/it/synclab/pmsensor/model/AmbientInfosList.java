@@ -8,6 +8,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * AmbientInfosList class
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

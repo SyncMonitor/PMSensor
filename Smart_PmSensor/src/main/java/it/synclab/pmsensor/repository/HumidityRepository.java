@@ -10,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import it.synclab.pmsensor.model.Humidity;
 
+/**
+ * Repository for Humidity
+ */
 @Repository
 public interface HumidityRepository extends JpaRepository<Humidity, Long> {
 

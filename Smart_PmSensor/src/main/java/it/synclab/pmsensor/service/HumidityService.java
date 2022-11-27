@@ -2,19 +2,27 @@ package it.synclab.pmsensor.service;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.synclab.pmsensor.controller.AmbientInfosController;
 import it.synclab.pmsensor.model.Humidity;
 import it.synclab.pmsensor.repository.HumidityRepository;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Service for Humidity
+ */
 @Slf4j
 @Service
 public class HumidityService {
-
-    @Autowired
+	private static final Logger log = LogManager.getLogger(HumidityService.class);
+    
+	@Autowired
     private HumidityRepository humRep;
+    
 
 
     public List<Humidity> getAllHumidities() {

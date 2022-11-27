@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import it.synclab.pmsensor.model.ParticularMatter10;
 import it.synclab.pmsensor.service.PM10Service;
 
+/**
+ * Controller for Pm10
+ */
 @RestController
 @RequestMapping("/pm10")
 public class PM10Controller {

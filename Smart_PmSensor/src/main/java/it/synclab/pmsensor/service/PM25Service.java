@@ -9,6 +9,9 @@ import it.synclab.pmsensor.model.ParticularMatter25;
 import it.synclab.pmsensor.repository.AmbientInfosRepository;
 import it.synclab.pmsensor.repository.PM25Repository;
 
+/**
+ * Service for Pm25
+ */
 @Service
 public class PM25Service {
 

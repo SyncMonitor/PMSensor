@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import it.synclab.pmsensor.model.AmbientInfos;
 import it.synclab.pmsensor.repository.AmbientInfosRepository;
 
+/**
+ * Service for AmbientInfos
+ */
 @Service
 public class AmbientInfosService {
 

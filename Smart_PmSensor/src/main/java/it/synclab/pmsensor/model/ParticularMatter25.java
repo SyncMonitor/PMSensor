@@ -17,6 +17,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * ParticularMatter25 class
+ */
 @Entity
 @Data
 @AllArgsConstructor

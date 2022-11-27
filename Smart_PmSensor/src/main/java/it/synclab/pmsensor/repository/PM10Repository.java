@@ -10,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import it.synclab.pmsensor.model.ParticularMatter10;
 
+/**
+ * Repository for Pm10
+ */
 @Repository
 public interface PM10Repository extends JpaRepository<ParticularMatter10, Long> {
 

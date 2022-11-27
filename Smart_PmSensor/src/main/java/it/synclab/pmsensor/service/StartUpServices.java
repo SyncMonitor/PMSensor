@@ -7,6 +7,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -15,6 +17,7 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
+import it.synclab.pmsensor.controller.AmbientInfosController;
 import it.synclab.pmsensor.model.AmbientInfos;
 import it.synclab.pmsensor.model.AmbientInfosList;
 import it.synclab.pmsensor.model.Humidity;
@@ -26,7 +29,9 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class StartUpServices {
-    @Value("#{'${sensors.ambienting.url}'.split(',')}")
+	private static final Logger log = LogManager.getLogger(StartUpServices.class);
+	
+	@Value("#{'${sensors.ambienting.url}'.split(',')}")
     private List<String> sensorDataUrl;
 
     @Autowired
@@ -34,6 +39,10 @@ public class StartUpServices {
 
     @Autowired
     private AmbientInfosRepository air;
+    
+    private static String LONGITUDE = "11.928344";
+    private static String LATITUDE = "45.388653";
+    private static String ADDRESS = "Padova Galleria Spagna";
 
     public void saveLastData(AmbientInfosList sensors) {
         List<AmbientInfos> newData = new ArrayList<>();
@@ -102,9 +111,9 @@ public class StartUpServices {
 
     private ParticularMatter25 createPm25(String[] parts, Date date) {
         ParticularMatter25 pm25 = new ParticularMatter25();
-        pm25.setAddress("Padova Galleria Spagna");
-        pm25.setLatitude("45.388653");
-        pm25.setLongitude("11.928344");
+        pm25.setAddress(ADDRESS);
+        pm25.setLatitude(LATITUDE);
+        pm25.setLongitude(LONGITUDE);
         Timestamp ts = new Timestamp(System.currentTimeMillis());
         Date timestamp = new Date(ts.getTime());
         pm25.setTimestamp(timestamp);
@@ -115,9 +124,9 @@ public class StartUpServices {
 
     private ParticularMatter10 createPm10(String[] parts, Date date) {
         ParticularMatter10 pm10 = new ParticularMatter10();
-        pm10.setAddress("Padova Galleria Spagna");
-        pm10.setLatitude("45.388653");
-        pm10.setLongitude("11.928344");
+        pm10.setAddress(ADDRESS);
+        pm10.setLatitude(LATITUDE);
+        pm10.setLongitude(LONGITUDE);
         Timestamp ts = new Timestamp(System.currentTimeMillis());
         Date timestamp = new Date(ts.getTime());
         pm10.setTimestamp(timestamp);
@@ -128,9 +137,9 @@ public class StartUpServices {
 
     private Temperature createTemperature(String[] parts, Date date) {
         Temperature temperature = new Temperature();
-        temperature.setAddress("Padova Galleria Spagna");
-        temperature.setLatitude("45.388653");
-        temperature.setLongitude("11.928344");
+        temperature.setAddress(ADDRESS);
+        temperature.setLatitude(LATITUDE);
+        temperature.setLongitude(LONGITUDE);
         Timestamp ts = new Timestamp(System.currentTimeMillis());
         Date timestamp = new Date(ts.getTime());
         temperature.setTimestamp(timestamp);
@@ -141,9 +150,9 @@ public class StartUpServices {
 
     private Humidity createHumidity(String[] parts, Date date) {
         Humidity humidity = new Humidity();
-        humidity.setAddress("Padova Galleria Spagna");
-        humidity.setLatitude("45.388653");
-        humidity.setLongitude("11.928344");
+        humidity.setAddress(ADDRESS);
+        humidity.setLatitude(LATITUDE);
+        humidity.setLongitude(LONGITUDE);
         Timestamp ts = new Timestamp(System.currentTimeMillis());
         Date timestamp = new Date(ts.getTime());
         humidity.setTimestamp(timestamp);

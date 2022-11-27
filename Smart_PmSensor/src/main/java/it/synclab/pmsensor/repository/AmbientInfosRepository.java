@@ -15,6 +15,9 @@ import it.synclab.pmsensor.model.ParticularMatter10;
 import it.synclab.pmsensor.model.ParticularMatter25;
 import it.synclab.pmsensor.model.Temperature;
 
+/**
+ * Repository for AmbientInfos
+ */
 @Repository
 public interface AmbientInfosRepository extends JpaRepository<AmbientInfos, Long> {
 

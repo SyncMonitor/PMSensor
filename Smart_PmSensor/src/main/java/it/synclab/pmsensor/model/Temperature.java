@@ -17,6 +17,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * Temperature class
+ */
 @Entity
 @Data
 @AllArgsConstructor

@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import it.synclab.pmsensor.model.Temperature;
 import it.synclab.pmsensor.repository.TemperatureRepository;
 
+/**
+ * Service for Temperature
+ */
 @Service
 public class TemperatureService {
 
